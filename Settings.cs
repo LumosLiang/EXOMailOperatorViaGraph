@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
 
-namespace SimpleMailSender
+namespace EXOMailOperatorViaGraph
 {
     public class Settings
     {
         public string? ClientId { get; set; }
         public string? ClientSecret { get; set; }
         public string? TenantId { get; set; }
-        public string? Sender { get; set; }
+        public string? Mailbox { get; set; }
 
         public static Settings LoadSettings()
         {

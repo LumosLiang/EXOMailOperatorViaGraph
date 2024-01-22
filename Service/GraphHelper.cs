@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Azure.Core;
+﻿using Azure.Core;
 using Azure.Identity;
 using Microsoft.Graph;
+using Microsoft.Graph.Users.Item.Messages.Item.Copy;
+using Microsoft.Graph.Models;
+using Microsoft.Graph.Users.Item.SendMail;
 
-namespace SimpleMailSender
+namespace EXOMailOperatorViaGraph.Service
 {
     public class GraphHelper
     {
@@ -61,33 +59,54 @@ namespace SimpleMailSender
                 throw new System.NullReferenceException("Graph has not been initialized for app auth");
 
             // Create a new message
-            var message = new Message
+            var requestBody = new SendMailPostRequestBody
             {
-                Subject = subject,
-                Body = new ItemBody
+                Message = new Message
                 {
-                    Content = body,
-                    ContentType = BodyType.Text
-                },
-                ToRecipients = new Recipient[]
-                {
-                    new Recipient
+                    Subject = subject,
+                    Body = new ItemBody
                     {
-                        EmailAddress = new EmailAddress
+                        Content = body,
+                        ContentType = BodyType.Text
+                    },
+                    ToRecipients = new List<Recipient>
+                    {
+                        new Recipient
                         {
-                            Address = recipient
+                            EmailAddress = new EmailAddress
+                            {
+                                Address = recipient
+                            }
                         }
                     }
-                }
+                },
             };
+        
+            // Send the message using specific user
+            
+            await _appClient.Users[_settings.Mailbox].SendMail.PostAsync(requestBody);
+        }
+
+        public static async Task CopyMailAsync(string messageId, string destinationId)
+        {
+            // Ensure client isn't null
+            _ = _appClient ??
+                throw new System.NullReferenceException("Graph has not been initialized for app auth");
 
             // Send the message using specific user
 
+            var requestBody = new CopyPostRequestBody
+            {
+                DestinationId = destinationId
+            };
 
-            await _appClient.Users[_settings.Sender]
-                .SendMail(message)
-                .Request()
-                .PostAsync();
+
+            var message = await _appClient.Users[_settings.Mailbox].Messages[messageId].GetAsync();
+
+            for(int i = 0; i < 100; i++)
+            {
+                await _appClient.Users[_settings.Mailbox].Messages[messageId].Copy.PostAsync(requestBody);
+            }
         }
     }
 }

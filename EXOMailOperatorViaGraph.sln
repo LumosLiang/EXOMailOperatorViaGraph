@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMailSender", "SimpleMailSender.csproj", "{503AF730-FAD8-41B8-B2F1-5EF0DECA9554}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXOMailOperatorViaGraph", "EXOMailOperatorViaGraph.csproj", "{503AF730-FAD8-41B8-B2F1-5EF0DECA9554}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

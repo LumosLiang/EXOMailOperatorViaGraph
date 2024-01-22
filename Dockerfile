@@ -17,4 +17,4 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /SimpleMailSender
 COPY --from=build-env /SimpleMailSender/out .
-ENTRYPOINT ["dotnet", "SimpleMailSender.dll"]
+ENTRYPOINT ["dotnet", "EXOMailOperatorViaGraph.dll"]
