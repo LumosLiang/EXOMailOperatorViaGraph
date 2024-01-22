@@ -1,7 +1,7 @@
 # stage one
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
-WORKDIR /SimpleMailSender
+WORKDIR /EXOMailOperatorViaGraph
 
 # Copy everything
 COPY . ./
@@ -15,6 +15,6 @@ RUN dotnet publish -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
-WORKDIR /SimpleMailSender
-COPY --from=build-env /SimpleMailSender/out .
+WORKDIR /EXOMailOperatorViaGraph
+COPY --from=build-env /EXOMailOperatorViaGraph/out .
 ENTRYPOINT ["dotnet", "EXOMailOperatorViaGraph.dll"]
