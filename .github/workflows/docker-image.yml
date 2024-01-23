@@ -1,6 +1,5 @@
-name: Docker Image CICD
-
 on: [push]
+name: Linux_Container_Workflow
 
 jobs:
     build-and-deploy:
@@ -34,5 +33,5 @@ jobs:
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-            name: aci-EXOMailOperatorViaGraph
-            location: 'east asia'
+            name: aci-sampleapp
+            location: 'west us'
