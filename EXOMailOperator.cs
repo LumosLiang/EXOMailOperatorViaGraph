@@ -27,7 +27,7 @@ namespace EXOMailOperatorViaGraph
         {
             try
             {
-                string messageId = "AAMkAGQ4NGY4ZGU5LWIzNWQtNDFiYi1hZjM5LWIzYzMxNzhjNGVkYwBGAAAAAABi6UOHkfIJTq+dJwoo6gaQBwDoHOF8RpqCTJPIZd3Xqq6SAAAAAAEJAADoHOF8RpqCTJPIZd3Xqq6SAAUY4QLgAAA=";
+                string messageId = "AAMkAGQ4NGY4ZGU5LWIzNWQtNDFiYi1hZjM5LWIzYzMxNzhjNGVkYwBGAAAAAABi6UOHkfIJTq+dJwoo6gaQBwDoHOF8RpqCTJPIZd3Xqq6SAAAAAAEMAADoHOF8RpqCTJPIZd3Xqq6SAAYB97SmAAA=";
                 string destinationId = "AQMkAGQ4NGY4ZGU5LWIzNWQtNDFiYgAtYWYzOS1iM2MzMTc4YzRlZGMALgAAA2LpQ4eR8glOr50nCijqBpABAOgc4XxGmoJMk8hl3deqrpIAAAIBDAAAAA==";
                 await GraphHelper.CopyMailAsync(messageId, destinationId);
 
@@ -35,7 +35,7 @@ namespace EXOMailOperatorViaGraph
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error sending mail: {ex.Message}");
+                Console.WriteLine($"Error copying mail: {ex.Message}");
             }
         }
     }
